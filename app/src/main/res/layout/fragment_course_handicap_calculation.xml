@@ -12,23 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green"
-        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Course Handicap Calculator"
-        app:titleTextColor="@color/white" />
+        app:title="@string/app_name" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/handicap_index_container"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:hint="@string/handicap_index"
         android:padding="12dp"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:errorIconDrawable="@null"
+        app:expandedHintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@id/course_rating_container"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:shapeAppearance="@style/rounded_corners">
 
@@ -36,73 +35,80 @@
             android:id="@+id/handicap_index"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal|numberSigned" />
+            android:inputType="numberDecimal|numberSigned"
+            android:maxLength="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/course_rating_container"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:hint="@string/course_rating"
         android:padding="12dp"
         app:errorEnabled="true"
+        app:errorIconDrawable="@null"
+        app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/handicap_index_container"
-        app:layout_constraintTop_toBottomOf="@id/handicap_index_container"
+        app:layout_constraintStart_toEndOf="@id/handicap_index_container"
+        app:layout_constraintTop_toTopOf="@id/handicap_index_container"
         app:shapeAppearance="@style/rounded_corners">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/course_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:maxLength="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/slope_rating_container"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:hint="@string/slope_rating"
         android:padding="12dp"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/course_rating_container"
-        app:layout_constraintTop_toBottomOf="@id/course_rating_container"
+        app:errorIconDrawable="@null"
+        app:expandedHintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@id/par_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/handicap_index_container"
         app:shapeAppearance="@style/rounded_corners">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/slope_raiting"
+            android:id="@+id/slope_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/par_container"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:hint="@string/par"
         android:padding="12dp"
         app:errorEnabled="true"
+        app:errorIconDrawable="@null"
+        app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/slope_rating_container"
-        app:layout_constraintTop_toBottomOf="@id/slope_rating_container"
+        app:layout_constraintStart_toEndOf="@id/slope_rating_container"
+        app:layout_constraintTop_toTopOf="@id/slope_rating_container"
         app:shapeAppearance="@style/rounded_corners">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/par_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:maxLength="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,29 +116,22 @@
         android:id="@+id/handicap_score_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/your_course_handicap_score"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/calculate_button"
-        app:layout_constraintEnd_toEndOf="@id/par_container"
-        app:layout_constraintStart_toStartOf="@id/par_container"
-        app:layout_constraintTop_toBottomOf="@id/par_container" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/handicap_score_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@id/handicap_score_title"
-        app:layout_constraintTop_toTopOf="@id/handicap_score_title" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/slope_rating_container" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/calculate_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:drawableLeft="@drawable/golf_flag"
-        android:drawableRight="@drawable/arrows"
+        android:drawableLeft="@drawable/baseline_golf_course_24"
+        android:drawableRight="@drawable/baseline_sports_golf_24"
+        android:paddingVertical="12dp"
         android:text="@string/calculate"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

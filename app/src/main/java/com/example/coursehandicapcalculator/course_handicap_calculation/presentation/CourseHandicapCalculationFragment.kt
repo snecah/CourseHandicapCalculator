@@ -34,6 +34,7 @@ class CourseHandicapCalculationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpTextWatchers()
+        binding.handicapScoreTitle.text = requireContext().getString(R.string.your_course_handicap_score, "")
         setUpClick()
 
         viewModel.state
@@ -48,10 +49,10 @@ class CourseHandicapCalculationFragment : Fragment() {
                 val score = viewModel.calculateCourseHandicap(
                     handicapIndex.text.toString(),
                     courseRating.text.toString(),
-                    slopeRaiting.text.toString(),
+                    slopeRating.text.toString(),
                     parRating.text.toString()
                 )
-                handicapScoreValue.text = score.toString()
+                handicapScoreTitle.text = requireContext().getString(R.string.your_course_handicap_score, score.toString())
             }
         }
     }
@@ -93,7 +94,7 @@ class CourseHandicapCalculationFragment : Fragment() {
                 viewModel.onValueChanged(it.toString(), TextInputType.COURSE_RATING)
             }
 
-            slopeRaiting.doAfterTextChanged {
+            slopeRating.doAfterTextChanged {
                 viewModel.onValueChanged(it.toString(), TextInputType.SLOPE_RATING)
             }
 

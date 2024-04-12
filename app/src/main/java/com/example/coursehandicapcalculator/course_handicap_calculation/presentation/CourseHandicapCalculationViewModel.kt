@@ -105,12 +105,14 @@ class CourseHandicapCalculationViewModel @Inject constructor() : ViewModel() {
     private fun validateField(value: String, leftBound: Double, rightBound: Double): Boolean {
         if (value.isNotEmpty()) {
             if (value.first() != '.') {
-                return if ((value.first() == '-') and (value.length > 1)) {
+                if ((value.first() == '-') and (value.length > 1)) {
                     val ratingNumber = -1 * value.substring(1, value.length).toDouble()
-                    (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
+                    return (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
                 } else {
-                    val ratingNumber = if (value.length > 1) value.toDouble() else -100.0
-                    (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
+                    if (value.first() != '-') {
+                        val ratingNumber = value.toDouble()
+                        return (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
+                    }
                 }
             }
         }
