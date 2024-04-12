@@ -34,11 +34,26 @@ class CourseHandicapCalculationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpTextWatchers()
+        setUpClick()
 
         viewModel.state
             .flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach(::onStateChanged)
             .launchIn(lifecycleScope)
+    }
+
+    private fun setUpClick() {
+        with(binding) {
+            calculateButton.setOnClickListener {
+                val score = viewModel.calculateCourseHandicap(
+                    handicapIndex.text.toString(),
+                    courseRating.text.toString(),
+                    slopeRaiting.text.toString(),
+                    parRating.text.toString()
+                )
+                handicapScoreValue.text = score.toString()
+            }
+        }
     }
 
     private fun onStateChanged(state: CourseHandicapCalculationState) {

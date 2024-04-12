@@ -78,8 +78,7 @@ class CourseHandicapCalculationViewModel @Inject constructor() : ViewModel() {
                 )
                 _state.update { state ->
                     state.copy(
-                        isSlopeRatingCorrect = isCorrect,
-                        isButtonEnabled = isCalculateButtonEnabled
+                        isSlopeRatingCorrect = isCorrect, isButtonEnabled = isCalculateButtonEnabled
                     )
                 }
             }
@@ -92,8 +91,7 @@ class CourseHandicapCalculationViewModel @Inject constructor() : ViewModel() {
                 )
                 _state.update { state ->
                     state.copy(
-                        isPairCorrect = isCorrect,
-                        isButtonEnabled = isCalculateButtonEnabled
+                        isPairCorrect = isCorrect, isButtonEnabled = isCalculateButtonEnabled
                     )
                 }
             }
@@ -107,10 +105,27 @@ class CourseHandicapCalculationViewModel @Inject constructor() : ViewModel() {
     private fun validateField(value: String, leftBound: Double, rightBound: Double): Boolean {
         if (value.isNotEmpty()) {
             if (value.first() != '.') {
-                val ratingNumber = value.toDouble()
-                return (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
+                return if ((value.first() == '-') and (value.length > 1)) {
+                    val ratingNumber = -1 * value.substring(1, value.length).toDouble()
+                    (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
+                } else {
+                    val ratingNumber = if (value.length > 1) value.toDouble() else -100.0
+                    (ratingNumber >= leftBound) and (ratingNumber <= rightBound)
+                }
             }
         }
         return false
+    }
+
+    fun calculateCourseHandicap(
+        handicapIndex: String, courseRating: String, slopeRating: String, par: String
+    ): Int {
+        val handicapIndexNumber = handicapIndex.toDouble()
+        val courseRatingNumber = courseRating.toDouble()
+        val slopeRatingNumber = slopeRating.toDouble()
+        val parNumber = par.toDouble()
+        val result =
+            (handicapIndexNumber * (slopeRatingNumber / 113.0) + (courseRatingNumber - parNumber))
+        return if (result < 0) -1 * ((-1 * result).toInt()) else result.toInt()
     }
 }
