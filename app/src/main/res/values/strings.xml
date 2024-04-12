@@ -7,4 +7,8 @@
     <string name="par">Par</string>
     <string name="slope_rating">Slope rating</string>
     <string name="calculate">Calculate</string>
+    <string name="error_message_slope">Slope rating must be integer value from 55 to 155</string>
+    <string name="error_message_handicap">Handicap index must be from -10.0 to 54.0</string>
+    <string name="error_message_course">Course rating must be from 50.0 to 86.0</string>
+    <string name="error_message_par">Par rating must be from 50.0 to 85.0</string>
 </resources>
