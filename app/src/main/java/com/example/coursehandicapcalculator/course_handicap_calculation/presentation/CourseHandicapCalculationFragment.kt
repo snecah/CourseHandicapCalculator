@@ -48,7 +48,7 @@ class CourseHandicapCalculationFragment : Fragment() {
                 val score = viewModel.calculateCourseHandicap(
                     handicapIndex.text.toString(),
                     courseRating.text.toString(),
-                    slopeRaiting.text.toString(),
+                    slopeRating.text.toString(),
                     parRating.text.toString()
                 )
                 handicapScoreValue.text = score.toString()
@@ -93,7 +93,7 @@ class CourseHandicapCalculationFragment : Fragment() {
                 viewModel.onValueChanged(it.toString(), TextInputType.COURSE_RATING)
             }
 
-            slopeRaiting.doAfterTextChanged {
+            slopeRating.doAfterTextChanged {
                 viewModel.onValueChanged(it.toString(), TextInputType.SLOPE_RATING)
             }
 
